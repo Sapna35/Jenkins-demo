@@ -1,0 +1,22 @@
+-hosts: appserver
+become: yes
+tasks:
+  -name: Install Java
+  apt:
+    name: openjdk-17-jdk
+    state: present
+    update_cache: yes
+    
+  -name: Instal Tomcat
+  apt:
+    name: tomcat9
+    state: present
+
+   -name: Deploy war file
+    copy:
+      src: target/addressbook.war
+      dest: /var/lib/tomcat9/wenapps/addressbook.war
+   -name: Restart Tomcat
+    services:
+      name: tomcat9
+      state: restarted
