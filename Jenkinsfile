@@ -10,6 +10,7 @@ pipeline{
       steps{
         git branch:'main',
           url:'github.com/Sapna35/Jenkins-demo.git'
+        credentialsId: 'github-creds'
       }
     }
     stages('Build with Maven'){
