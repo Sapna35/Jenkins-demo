@@ -2,28 +2,21 @@ pipeline{
   agent any
 
   stages{
-    stages('Checkout'){
-      steps{
-        git branch: 'main', url:'https://github.com/Sapna35/Jenkins-demo.git
-      }
-    }
     stages('Build'){
       steps{
-        sh 'mvn clean package'
+        echo"Building the project..."
       }
     }
-    stages('Deploy'){
+    stages('Test'){
       steps{
-        sshagent(['app-server-key']){
-          sh'''
-          scp -o
-          StrictHostKeyChecking=no target/*.jar
-          ${APP_USER}@{APP_SERVER} :/home/ubuntu/
-          ssh
-          ${APP_USER}@${APP_SERVER} "pkill -f java || true && nohup java -jar /home/ubuntu/*.jar > app.log 2>&1 &"
-          '''
+        echo"Running Tests..."
         }
       }
+    stages('Deploy'){
+      steps{
+        echo"Deploy application..."
+           }
     }
   }
 }
+
