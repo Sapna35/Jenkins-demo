@@ -26,10 +26,11 @@ pipeline{
     stages('Deploy to Tomcat using Ansible'){
       steps{
         steps{
-          ansiblePlaybook
-          credentialsId: 'app-sh',
-          Inventory: 'ansible/hosts',
-          playbook: 'ansible/tomcat.yml'
+          ansiblePlaybook(
+            playbook: 'ansible/tomcat.yml',
+             Inventory: 'ansible/hosts',
+            credentialsId: 'app-sh',
+            )
            }
     }
   }
