@@ -9,7 +9,7 @@ pipeline{
     stages('Checkout Code'){
       steps{
         git branch:'main',
-          url:'github.com/Sapna35/Jenkins-demo.git'
+          url:'github.com/Sapna35/Jenkins-demo.git',
         credentialsId: 'github-creds'
       }
     }
